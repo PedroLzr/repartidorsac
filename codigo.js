@@ -70,6 +70,23 @@ function mostrarFomulario(){
         labelMetalRecolectado.setAttribute("for", "inputMetalRecolectado");
         labelMetalRecolectado.textContent = "Metal Recolectado"
 
+        // Perdidas
+        var inputMetalPerdido = document.createElement("input");
+        inputMetalPerdido.setAttribute("type", "number");
+        inputMetalPerdido.id = "inputMetalPerdido" + i;
+        var labelMetalPerdido = document.createElement("label");
+        labelMetalPerdido.setAttribute("for", "inputMetalPerdido");
+        labelMetalPerdido.textContent = "Pérdidas Metal"
+        labelMetalPerdido.className = "text-danger";
+
+        var inputCristalPerdido = document.createElement("input");
+        inputCristalPerdido.setAttribute("type", "number");
+        inputCristalPerdido.id = "inputCristalPerdido" + i;
+        var labelCristalPerdido = document.createElement("label");
+        labelCristalPerdido.setAttribute("for", "inputCristalPerdido");
+        labelCristalPerdido.textContent = "Pérdidas Cristal"
+        labelCristalPerdido.className = "text-danger";
+
         formularioAtacante.appendChild(nombreAtacante);
 
         formularioAtacante.appendChild(labelMetalCapturado);
@@ -86,6 +103,13 @@ function mostrarFomulario(){
 
         formularioAtacante.appendChild(labelCristalRecolectado);
         formularioAtacante.appendChild(inputCristalRecolectado);
+
+        formularioAtacante.appendChild(labelMetalPerdido);
+        formularioAtacante.appendChild(inputMetalPerdido);
+
+        formularioAtacante.appendChild(labelCristalPerdido);
+        formularioAtacante.appendChild(inputCristalPerdido);
+
         formulario.appendChild(formularioAtacante);
         
         var resultados = document.getElementById("resultado");
@@ -116,9 +140,12 @@ function calcular(){
         var metalRecolectado = document.getElementById(("inputMetalRecolectado" + i)).value;
         var cristalRecolectado = document.getElementById(("inputCristalRecolectado" + i)).value;
 
+        var metalPerdido = parseInt(document.getElementById("inputMetalPerdido" + i).value);
+        var cristalPerdido = parseInt(document.getElementById("inputCristalPerdido" + i).value);
+
         var deuterio = parseInt(document.getElementById(("inputDeuterioCapturado" + i)).value);
-        var metal = parseInt(metalCapturado) + parseInt(metalRecolectado);
-        var cristal = parseInt(cristalCapturado) + parseInt(cristalRecolectado);
+        var metal = (parseInt(metalCapturado) + parseInt(metalRecolectado)) - metalPerdido;
+        var cristal = (parseInt(cristalCapturado) + parseInt(cristalRecolectado)) - cristalPerdido;
 
         var diferenciaMetal = 0;
         var sobraMetal = false;
@@ -232,8 +259,11 @@ function calcularTotales(){
         var metalRecolectado = document.getElementById(("inputMetalRecolectado" + i)).value;
         var cristalRecolectado = document.getElementById(("inputCristalRecolectado" + i)).value;
 
-        var metal = parseInt(metalCapturado) + parseInt(metalRecolectado);
-        var cristal = parseInt(cristalCapturado) + parseInt(cristalRecolectado);
+        var metalPerdido = parseInt(document.getElementById("inputMetalPerdido" + i).value);
+        var cristalPerdido = parseInt(document.getElementById("inputCristalPerdido" + i).value);
+
+        var metal = (parseInt(metalCapturado) + parseInt(metalRecolectado)) - metalPerdido;
+        var cristal = (parseInt(cristalCapturado) + parseInt(cristalRecolectado)) - cristalPerdido;
         var deuterio = parseInt(document.getElementById("inputDeuterioCapturado"+i).value);
 
         totalMetal += metal;
