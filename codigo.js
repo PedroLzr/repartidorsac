@@ -100,6 +100,14 @@ function mostrarFomulario(){
 }
 
 function calcular(){
+    var divTotales = document.getElementById("totales");
+    divTotales.innerHTML = "";
+
+    for(var i = 0; i<numAtacantes.value; i++){
+        var resultado = document.getElementById("calculado" + i);
+        resultado.innerHTML = "";
+    }
+
     calcularTotales();
 
     for(var i = 0; i<numAtacantes.value; i++){
@@ -234,26 +242,26 @@ function calcularTotales(){
     }
 
     var mostrarMetal = document.createElement("h3");
-    mostrarMetal.textContent = "TOTAL Metal: " + redondear(totalMetal);
+    mostrarMetal.innerHTML = "<i class='fas fa-globe'></i> Total Metal: " + redondear(totalMetal);
 
     var mostrarCristal = document.createElement("h3");
-    mostrarCristal.textContent = "TOTAL Cristal: " + redondear(totalCristal);
+    mostrarCristal.innerHTML = "<i class='fas fa-globe'></i> Total Cristal: " + redondear(totalCristal);
 
     var mostrarDeuterio = document.createElement("h3");
-    mostrarDeuterio.textContent = "TOTAL Deuterio: " + redondear(totalDeuterio);
+    mostrarDeuterio.innerHTML = "<i class='fas fa-globe'></i> Total Deuterio: " + redondear(totalDeuterio);
 
     metalCadaUno = totalMetal/(parseInt(numAtacantes.value));
     cristalCadaUno = totalCristal/(parseInt(numAtacantes.value));
     deuterioCadaUno = totalDeuterio/(parseInt(numAtacantes.value));
 
     var mostrarMetalCadaUno = document.createElement("h3");
-    mostrarMetalCadaUno.textContent = "Metal para cada uno: " + redondear(metalCadaUno);
+    mostrarMetalCadaUno.innerHTML = "<i class='fas fa-user-astronaut'></i> Metal x Atacante: " + redondear(metalCadaUno);
 
     var mostrarCristalCadaUno = document.createElement("h3");
-    mostrarCristalCadaUno.textContent = "Cristal para cada uno: " + redondear(cristalCadaUno);
+    mostrarCristalCadaUno.innerHTML = "<i class='fas fa-user-astronaut'></i> Cristal x Atacante: " + redondear(cristalCadaUno);
 
     var mostrarDeuterioCadaUno = document.createElement("h3");
-    mostrarDeuterioCadaUno.textContent = "Deuterio para cada uno: " + redondear(deuterioCadaUno);
+    mostrarDeuterioCadaUno.innerHTML = "<i class='fas fa-user-astronaut'></i> Deuterio x Atacante: " + redondear(deuterioCadaUno);
 
     var totales = document.getElementById("totales");
 
